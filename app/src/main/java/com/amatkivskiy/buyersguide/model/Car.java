@@ -1,9 +1,12 @@
 package com.amatkivskiy.buyersguide.model;
 
 import com.google.gson.annotations.SerializedName;
+
 import com.amatkivskiy.buyersguide.Constants.Database;
+
 import se.emilsjolander.sprinkles.Model;
 import se.emilsjolander.sprinkles.annotations.Column;
+import se.emilsjolander.sprinkles.annotations.DynamicColumn;
 import se.emilsjolander.sprinkles.annotations.Key;
 import se.emilsjolander.sprinkles.annotations.Table;
 
@@ -25,7 +28,7 @@ public class Car extends Model {
   @Column(Database.CarUrlColumn)
   private String url;
 
-  @Column(Database.CarFavouritesColumn)
+  @DynamicColumn(Database.CarFavouritesColumn)
   private boolean isFavourite;
 
   public int getCarId() {

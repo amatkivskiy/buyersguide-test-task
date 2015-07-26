@@ -6,8 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.amatkivskiy.buyersguide.network.ApiHelper;
-import com.amatkivskiy.buyersguide.ui.fragments.CarsListFragment;
+import com.amatkivskiy.buyersguide.ui.fragments.AllCarsListFragment;
+import com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarListFragment;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -68,10 +68,12 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void showFavouritesListFragment() {
+    FavouritesCarListFragment fragment = new FavouritesCarListFragment();
+    getFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
   }
 
   private void showCarListFragment() {
-    CarsListFragment fragment = new CarsListFragment();
+    AllCarsListFragment fragment = new AllCarsListFragment();
     getFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
   }
 
