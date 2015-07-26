@@ -46,15 +46,15 @@ public abstract class BaseCarListFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View rootView = inflater.inflate(R.layout.fragment_cars_list, container, false);
+    View root = inflater.inflate(R.layout.fragment_cars_list, container, false);
 
-    mRecyclerView = (EmptyRecyclerView) rootView.findViewById(R.id.cars_recycler);
+    mRecyclerView = (EmptyRecyclerView) root.findViewById(R.id.cars_recycler);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     mAdapter = new CarsAdapter(getActivity());
     mRecyclerView.setAdapter(mAdapter);
 
-    swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+    swipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
     swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
     swipeRefreshLayout.setProgressViewOffset(false, 0,
                                              (int) TypedValue
@@ -68,7 +68,7 @@ public abstract class BaseCarListFragment extends Fragment {
       swipeRefreshLayout.setEnabled(false);
     }
 
-    return rootView;
+    return root;
   }
 
   @Override
