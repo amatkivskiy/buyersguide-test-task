@@ -12,7 +12,8 @@ import retrofit.client.Response;
 import timber.log.Timber;
 
 public class ApiHelper {
-  public void getCars(Callback<CarResponse> responseCallback) {
+
+  public static void getCars(Callback<CarResponse> responseCallback) {
     RestAdapter.Builder builder = new RestAdapter.Builder()
         .setEndpoint("http://buyersguide.caranddriver.com");
 
@@ -36,10 +37,10 @@ public class ApiHelper {
       public void success(CarResponse carResponse, Response response) {
         Timber.d("Received %d cars from server", carResponse.getCount());
 
-        //TODO: what if this saving to DB fails???
+        //TODO: what if this fails???
         new ModelList<>(carResponse.getCars()).saveAllAsync();
 
-        if (inner !=null) {
+        if (inner != null) {
           inner.success(carResponse, response);
         }
       }
