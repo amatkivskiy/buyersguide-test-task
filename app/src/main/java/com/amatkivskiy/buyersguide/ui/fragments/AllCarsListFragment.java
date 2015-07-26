@@ -1,5 +1,8 @@
 package com.amatkivskiy.buyersguide.ui.fragments;
 
+import android.content.Intent;
+
+import com.amatkivskiy.buyersguide.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.model.CarResponse;
 import com.amatkivskiy.buyersguide.network.ApiHelper;
@@ -17,6 +20,14 @@ public class AllCarsListFragment extends BaseCarListFragment {
   @Override
   protected boolean isRefreshEnabled() {
     return true;
+  }
+
+  @Override
+  public void onItemClicked(int position) {
+    Car selected = getAdapter().getItems().get(position);
+    Intent intent = CarDetailsActivity.getStartIntent(getActivity(), selected);
+
+    startActivity(intent);
   }
 
   @Override
