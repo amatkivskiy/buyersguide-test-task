@@ -15,7 +15,9 @@ import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.ui.adapters.CarsAdapter;
 import com.amatkivskiy.buyersguide.ui.views.EmptyRecyclerView;
 
-public abstract class BaseCarListFragment extends Fragment {
+public abstract class BaseCarListFragment extends Fragment implements
+                                                           CarsAdapter.OnItemClickListener,
+                                                           CarsAdapter.OnItemLongClickListener {
 
   protected EmptyRecyclerView mRecyclerView;
   protected SwipeRefreshLayout swipeRefreshLayout;
@@ -35,6 +37,15 @@ public abstract class BaseCarListFragment extends Fragment {
   protected void handleRefresh() {
   }
 
+  @Override
+  public void onItemClicked(int position) {
+  }
+
+  @Override
+  public boolean onItemLongClicked(int position) {
+    return false;
+  }
+
   public CarsAdapter getAdapter() {
     return mAdapter;
   }
@@ -51,7 +62,7 @@ public abstract class BaseCarListFragment extends Fragment {
     mRecyclerView = (EmptyRecyclerView) root.findViewById(R.id.cars_recycler);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-    mAdapter = new CarsAdapter(getActivity());
+    mAdapter = new CarsAdapter(getActivity(), this, this);
     mRecyclerView.setAdapter(mAdapter);
 
     swipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.refresh_layout);

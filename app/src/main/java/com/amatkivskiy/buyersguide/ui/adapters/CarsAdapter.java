@@ -17,11 +17,27 @@ import java.util.List;
 
 public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
+  //RecyclerView OnItemClickListener and OnItemLongClickListener implementations.
+  public interface OnItemClickListener {
+
+    void onItemClicked(int position);
+  }
+
+  public interface OnItemLongClickListener {
+
+    boolean onItemLongClicked(int position);
+  }
+
   private List<Car> items = Collections.emptyList();
+  private OnItemClickListener onItemClick;
+  private OnItemLongClickListener onItemLongClick;
   private Context context;
 
-  public CarsAdapter(Context context) {
+  public CarsAdapter(Context context, OnItemClickListener onItemClick,
+                     OnItemLongClickListener onItemLongClick) {
     this.context = context;
+    this.onItemClick = onItemClick;
+    this.onItemLongClick = onItemLongClick;
   }
 
   @Override
@@ -34,6 +50,18 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
   @Override
   public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onItemClick.onItemClicked(position);
+      }
+    });
+    viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        return onItemLongClick.onItemLongClicked(position);
+      }
+    });
     viewHolder.carNameTextView.setText(items.get(position).getName());
 
     Picasso.with(this.context)
