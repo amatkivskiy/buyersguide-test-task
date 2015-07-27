@@ -1,13 +1,17 @@
 package com.amatkivskiy.buyersguide;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.amatkivskiy.buyersguide.ui.fragments.AllCarsListFragment;
 import com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarListFragment;
+import com.amatkivskiy.buyersguide.util.ToolbarSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -16,7 +20,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class MainActivity extends AppCompatActivity {
 
+  public interface OnSearchActionsListener extends ToolbarSearchView.OnSearchListener {
+    void onCancelSearch();
+  }
+
   private Drawer drawer;
+  private OnSearchActionsListener searchActionsListener;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    toolbar.inflateMenu(R.menu.menu_main);
 
     drawer = new DrawerBuilder()
         .withActivity(this)
@@ -69,12 +79,48 @@ public class MainActivity extends AppCompatActivity {
 
   private void showFavouritesListFragment() {
     FavouritesCarListFragment fragment = new FavouritesCarListFragment();
+    searchActionsListener = fragment;
+
     getFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+    invalidateOptionsMenu();
   }
 
   private void showCarListFragment() {
     AllCarsListFragment fragment = new AllCarsListFragment();
+    searchActionsListener = null;
+
     getFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+    invalidateOptionsMenu();
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    initSearchView(menu);
+    return true;
+  }
+
+  private void initSearchView(Menu menu) {
+    MenuItem item = menu.findItem(R.id.search_cars);
+    if (searchActionsListener == null) {
+      item.setVisible(false);
+      return;
+    }
+
+    MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem item) {
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem item) {
+        searchActionsListener.onCancelSearch();
+        return true;
+      }
+    });
+    ToolbarSearchView toolbarSearchView = (ToolbarSearchView) MenuItemCompat.getActionView(item);
+    toolbarSearchView.setSearchPlaceholder(getString(R.string.text_serach_hint));
+    toolbarSearchView.setOnSearchListener(searchActionsListener);
   }
 
   @Override
