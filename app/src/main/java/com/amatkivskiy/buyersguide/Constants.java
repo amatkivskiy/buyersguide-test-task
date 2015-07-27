@@ -9,7 +9,6 @@ public class Constants {
     public final static String CarNameColumn = "name";
     public final static String CarMakeIconColumn = "makeIcon";
     public final static String CarUrlColumn = "url";
-    public final static String CarFavouritesColumn = "isFavourite";
 
     public final static String CarTableCreationQuery =
         "CREATE TABLE " + CarsTableName +
@@ -18,13 +17,17 @@ public class Constants {
         CarNameColumn + " TEXT," +
         CarMakeIconColumn + " TEXT," +
         CarUrlColumn + " TEXT," +
-        CarFavouritesColumn + " INTEGER," +
         "UNIQUE (" + CarIdColumn
         + ") ON CONFLICT REPLACE" +
         ")";
 
     public final static String SelectFavouritesQuery =
         "select * from " + CarsTableName +
-        " where " + CarFavouritesColumn + "=?";
+        " where " + CarIdColumn + " in(%s)";
+
+  }
+
+  public static class Preferences {
+    public final static String FavouriteCarsKey = "favourites";
   }
 }

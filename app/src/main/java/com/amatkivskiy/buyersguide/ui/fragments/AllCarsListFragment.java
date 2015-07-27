@@ -31,6 +31,16 @@ public class AllCarsListFragment extends BaseCarListFragment {
   }
 
   @Override
+  public boolean onItemLongClicked(int position) {
+    Car selected = getAdapter().getItems().get(position);
+
+    AllCarsOptionsDialogFragment fragment = AllCarsOptionsDialogFragment.newInstance(selected);
+    fragment.show(getActivity().getFragmentManager(), "dialog");
+
+    return false;
+  }
+
+  @Override
   protected void handleRefresh() {
     ApiHelper.getCars(new Callback<CarResponse>() {
       @Override

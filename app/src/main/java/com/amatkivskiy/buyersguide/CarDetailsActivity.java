@@ -13,7 +13,7 @@ import com.amatkivskiy.buyersguide.model.Car;
 
 public class CarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-  private final static String CarExtraName = "selected_car";
+  private final static String CAR_EXTRA_NAME = "selected_car";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,8 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     setContentView(R.layout.activity_car_details);
 
     Car car;
-    if (getIntent() != null && getIntent().hasExtra(CarExtraName)) {
-      car = getIntent().getParcelableExtra(CarExtraName);
+    if (getIntent() != null && getIntent().hasExtra(CAR_EXTRA_NAME)) {
+      car = getIntent().getParcelableExtra(CAR_EXTRA_NAME);
     } else {
       throw new IllegalStateException("Need to pass Car instance to instantiate this activity.");
     }
@@ -41,7 +41,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
   public static Intent getStartIntent(Context source, Car selectedCar) {
     Intent intent = new Intent(source, CarDetailsActivity.class);
-    intent.putExtra(CarExtraName, selectedCar);
+    intent.putExtra(CAR_EXTRA_NAME, selectedCar);
 
     return intent;
   }

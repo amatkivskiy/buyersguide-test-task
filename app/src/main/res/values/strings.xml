@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Buyers Guide</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
     <string name="text_drawer_favourites">Favourite</string>
     <string name="text_drawer_all">All</string>
+    <string name="text_options">Options</string>
+    <string name="text_open_option">Open</string>
+    <string name="text_add_to_favourites_option">Add to favourites</string>
+
+    <string name="text_successfully_added_favourites">Successfully added %s to favourites</string>
 </resources>

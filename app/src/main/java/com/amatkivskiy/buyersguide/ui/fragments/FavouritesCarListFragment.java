@@ -1,7 +1,8 @@
 package com.amatkivskiy.buyersguide.ui.fragments;
 
-import com.amatkivskiy.buyersguide.Constants.Database;
 import com.amatkivskiy.buyersguide.model.Car;
+import com.amatkivskiy.buyersguide.util.DbUtils;
+import com.amatkivskiy.buyersguide.util.Prefs;
 
 import se.emilsjolander.sprinkles.CursorList;
 import se.emilsjolander.sprinkles.ManyQuery;
@@ -16,7 +17,15 @@ public class FavouritesCarListFragment extends BaseCarListFragment {
 
   @Override
   protected void initDataSet() {
-    Query.many(Car.class, Database.SelectFavouritesQuery, 1)
+    Prefs prefs = Prefs.with(getActivity());
+
+    if (prefs.getFavourites().size() == 0) {
+      return;
+    }
+
+    String query = DbUtils.getFavouritesQuery(prefs.getFavourites());
+
+    Query.many(Car.class, query)
         .getAsync(getLoaderManager(), new ManyQuery.ResultHandler<Car>() {
           @Override
           public boolean handleResult(CursorList<Car> cursorList) {

@@ -9,7 +9,6 @@ import com.amatkivskiy.buyersguide.Constants.Database;
 
 import se.emilsjolander.sprinkles.Model;
 import se.emilsjolander.sprinkles.annotations.Column;
-import se.emilsjolander.sprinkles.annotations.DynamicColumn;
 import se.emilsjolander.sprinkles.annotations.Key;
 import se.emilsjolander.sprinkles.annotations.Table;
 
@@ -31,9 +30,6 @@ public class Car extends Model implements Parcelable {
   @Column(Database.CarUrlColumn)
   private String url;
 
-  @DynamicColumn(Database.CarFavouritesColumn)
-  private boolean isFavourite;
-
   public int getCarId() {
     return carId;
   }
@@ -50,14 +46,6 @@ public class Car extends Model implements Parcelable {
     return url;
   }
 
-  public boolean isFavourite() {
-    return isFavourite;
-  }
-
-  public void markFavourite(boolean isFavourite) {
-    this.isFavourite = isFavourite;
-  }
-
 
   @Override
   public int describeContents() {
@@ -70,7 +58,6 @@ public class Car extends Model implements Parcelable {
     dest.writeString(this.name);
     dest.writeString(this.makeIcon);
     dest.writeString(this.url);
-    dest.writeByte(isFavourite ? (byte) 1 : (byte) 0);
   }
 
   public Car() {
@@ -81,10 +68,9 @@ public class Car extends Model implements Parcelable {
     this.name = in.readString();
     this.makeIcon = in.readString();
     this.url = in.readString();
-    this.isFavourite = in.readByte() != 0;
   }
 
-  public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>() {
+  public static final Creator<Car> CREATOR = new Creator<Car>() {
     public Car createFromParcel(Parcel source) {
       return new Car(source);
     }
