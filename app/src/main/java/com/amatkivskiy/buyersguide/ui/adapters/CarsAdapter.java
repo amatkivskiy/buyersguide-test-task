@@ -17,7 +17,7 @@ import java.util.List;
 
 public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
-  //RecyclerView OnItemClickListener and OnItemLongClickListener implementations.
+  //recyclerView OnItemClickListener and OnItemLongClickListener implementations.
   public interface OnItemClickListener {
 
     void onItemClicked(int position);
@@ -67,6 +67,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
     Picasso.with(this.context)
         .load(items.get(position).getMakeIcon())
         .resize(150, 150)
+        .placeholder(R.drawable.car_placeholder)
+        .error(R.drawable.ic_error)
         .into(viewHolder.carIconImageView);
   }
 

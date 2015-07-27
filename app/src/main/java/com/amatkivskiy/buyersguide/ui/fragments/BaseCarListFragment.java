@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.amatkivskiy.buyersguide.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.R;
@@ -22,7 +24,8 @@ public abstract class BaseCarListFragment extends Fragment implements
                                                            CarsAdapter.OnItemClickListener,
                                                            CarsAdapter.OnItemLongClickListener {
 
-  protected EmptyRecyclerView mRecyclerView;
+  protected EmptyRecyclerView recyclerView;
+  protected TextView emptyText;
   protected SwipeRefreshLayout swipeRefreshLayout;
   private CarsAdapter mAdapter;
 
@@ -38,6 +41,15 @@ public abstract class BaseCarListFragment extends Fragment implements
   protected abstract void initDataSet();
 
   protected void handleRefresh() {
+  }
+
+  protected String getEmptyText() {
+    return "";
+  }
+
+  protected void setEmptyText(String text) {
+    emptyText.setText(text);
+    recyclerView.setEmptyView(emptyText);
   }
 
   @Override
@@ -66,11 +78,28 @@ public abstract class BaseCarListFragment extends Fragment implements
                            Bundle savedInstanceState) {
     View root = inflater.inflate(R.layout.fragment_cars_list, container, false);
 
-    mRecyclerView = (EmptyRecyclerView) root.findViewById(R.id.cars_recycler);
-    mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    emptyText = (TextView) root.findViewById(R.id.empty_text);
+    recyclerView = (EmptyRecyclerView) root.findViewById(R.id.cars_recycler);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+      }
+
+      @Override
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        int topRowVerticalPosition =
+            (recyclerView == null
+             || recyclerView.getChildCount() == 0) ? 0
+                                                   : recyclerView
+                .getChildAt(0).getTop();
+        swipeRefreshLayout.setEnabled(topRowVerticalPosition >= 0);
+      }
+    });
 
     mAdapter = new CarsAdapter(getActivity(), this, this);
-    mRecyclerView.setAdapter(mAdapter);
+    recyclerView.setAdapter(mAdapter);
 
     swipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
     swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
@@ -85,6 +114,8 @@ public abstract class BaseCarListFragment extends Fragment implements
     } else {
       swipeRefreshLayout.setEnabled(false);
     }
+
+    setEmptyText(getEmptyText());
 
     return root;
   }

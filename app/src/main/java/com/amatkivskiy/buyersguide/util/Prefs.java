@@ -9,23 +9,22 @@ import java.util.Set;
 
 import static com.amatkivskiy.buyersguide.Constants.Preferences.FavouriteCarsKey;
 
-/**
- * @author Alejandro Rodriguez (https://github.com/Alexrs95/Prefs)
- *
- *         Wrapper over the Android Preferences which provides a fluid syntax
- */
 public class Prefs {
 
   static Prefs singleton = null;
 
   static SharedPreferences preferences;
 
+  static SharedPreferences.Editor editor;
+
   Prefs(Context context) {
     preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    editor = preferences.edit();
   }
 
   Prefs(Context context, String name, int mode) {
     preferences = context.getSharedPreferences(name, mode);
+    editor = preferences.edit();
   }
 
   public static Prefs with(Context context) {
@@ -46,6 +45,7 @@ public class Prefs {
     Set<String> ids = getFavourites();
     ids.add(cardId);
 
+    remove(FavouriteCarsKey);
     saveFavourites(ids);
   }
 
@@ -53,6 +53,7 @@ public class Prefs {
     Set<String> ids = getFavourites();
     ids.remove(cardId);
 
+    remove(FavouriteCarsKey);
     saveFavourites(ids);
   }
 
@@ -65,11 +66,15 @@ public class Prefs {
   }
 
   public void save(String key, Set<String> value) {
-    preferences.edit().putStringSet(key, value).apply();
+    editor.putStringSet(key, value).commit();
   }
 
   public Set<String> getStringSet(String key, Set<String> defValue) {
     return preferences.getStringSet(key, defValue);
+  }
+
+  public void remove(String key) {
+    editor.remove(key).commit();
   }
 
   private static class Builder {

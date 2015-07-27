@@ -4,6 +4,7 @@
 
     <string name="text_drawer_favourites">Favourite</string>
     <string name="text_drawer_all">All</string>
+
     <string name="text_options">Options</string>
     <string name="text_open_option">Open</string>
     <string name="text_add_to_favourites_option">Add to favourites</string>
@@ -11,4 +12,8 @@
 
     <string name="text_successfully_added_favourites">Successfully added %s to favourites</string>
     <string name="text_successfully_removed_favourites">Successfully removed %s from favourites</string>
+
+    <string name="text_no_cars">No cars. Pull down to load cars.</string>
+    <string name="text_error_check_internet">Please check your internet connection</string>
+    <string name="text_empty_favourites">No cars in favourites.</string>
 </resources>

@@ -11,10 +11,17 @@ import se.emilsjolander.sprinkles.CursorList;
 import se.emilsjolander.sprinkles.ManyQuery;
 import se.emilsjolander.sprinkles.Query;
 
+import java.util.Collections;
+
 import static com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarsOptionsDialogFragment.*;
 
 public class FavouritesCarListFragment extends BaseCarListFragment implements
                                                                    OnRemoveFavouriteListener {
+
+  @Override
+  protected String getEmptyText() {
+    return getString(R.string.text_empty_favourites);
+  }
 
   @Override
   public void onRemoveFromFavourites(Car car) {
@@ -51,6 +58,7 @@ public class FavouritesCarListFragment extends BaseCarListFragment implements
     Prefs prefs = Prefs.with(getActivity());
 
     if (prefs.getFavourites().size() == 0) {
+      getAdapter().setItems(Collections.<Car>emptyList());
       return;
     }
 

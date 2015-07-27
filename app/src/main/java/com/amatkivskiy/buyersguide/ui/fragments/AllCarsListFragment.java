@@ -1,6 +1,7 @@
 package com.amatkivskiy.buyersguide.ui.fragments;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.amatkivskiy.buyersguide.CarDetailsActivity;
@@ -24,6 +25,10 @@ public class AllCarsListFragment extends BaseCarListFragment implements
                                                              OnAddCarToFavouritesListener,
                                                              OnOpenCarListener {
 
+  @Override
+  protected String getEmptyText() {
+    return getString(R.string.text_no_cars);
+  }
 
   @Override
   public void OnAddCarToFavourites(Car car) {
@@ -67,6 +72,11 @@ public class AllCarsListFragment extends BaseCarListFragment implements
       @Override
       public void failure(RetrofitError error) {
         setRefreshing(false);
+        if (getActivity() != null) {
+          Snackbar
+              .make(getView(), getString(R.string.text_error_check_internet), Snackbar.LENGTH_SHORT)
+              .show(); // Don’t forget to show!
+        }
       }
     });
   }
@@ -76,6 +86,10 @@ public class AllCarsListFragment extends BaseCarListFragment implements
     Query.all(Car.class).getAsync(getLoaderManager(), new ManyQuery.ResultHandler<Car>() {
       @Override
       public boolean handleResult(CursorList<Car> cursorList) {
+        if (cursorList.size() == 0) {
+          handleRefresh();
+        }
+
         getAdapter().setItems(cursorList.asList());
         cursorList.close();
 
