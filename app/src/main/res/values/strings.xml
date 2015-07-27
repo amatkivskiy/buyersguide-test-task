@@ -7,6 +7,8 @@
     <string name="text_options">Options</string>
     <string name="text_open_option">Open</string>
     <string name="text_add_to_favourites_option">Add to favourites</string>
+    <string name="text_remove_from_favourites_option">Remove from favourites</string>
 
     <string name="text_successfully_added_favourites">Successfully added %s to favourites</string>
+    <string name="text_successfully_removed_favourites">Successfully removed %s from favourites</string>
 </resources>

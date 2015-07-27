@@ -1,6 +1,7 @@
 package com.amatkivskiy.buyersguide.ui.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amatkivskiy.buyersguide.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.R;
+import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.ui.adapters.CarsAdapter;
 import com.amatkivskiy.buyersguide.ui.views.EmptyRecyclerView;
 
@@ -39,6 +42,10 @@ public abstract class BaseCarListFragment extends Fragment implements
 
   @Override
   public void onItemClicked(int position) {
+    Car selected = getAdapter().getItems().get(position);
+    Intent intent = CarDetailsActivity.getStartIntent(getActivity(), selected);
+
+    startActivity(intent);
   }
 
   @Override

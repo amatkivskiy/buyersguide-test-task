@@ -1,5 +1,8 @@
 package com.amatkivskiy.buyersguide.ui.fragments;
 
+import android.widget.Toast;
+
+import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.util.DbUtils;
 import com.amatkivskiy.buyersguide.util.Prefs;
@@ -8,10 +11,38 @@ import se.emilsjolander.sprinkles.CursorList;
 import se.emilsjolander.sprinkles.ManyQuery;
 import se.emilsjolander.sprinkles.Query;
 
-public class FavouritesCarListFragment extends BaseCarListFragment {
+import static com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarsOptionsDialogFragment.*;
+
+public class FavouritesCarListFragment extends BaseCarListFragment implements
+                                                                   OnRemoveFavouriteListener {
+
+  @Override
+  public void onRemoveFromFavourites(Car car) {
+    Prefs.with(getActivity()).removeFromFavourites(String.valueOf(car.getCarId()));
+
+    String text =
+        String.format(getString(R.string.text_successfully_removed_favourites), car.getName());
+    Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
+
+    initDataSet();
+  }
 
   @Override
   protected boolean isRefreshEnabled() {
+    return false;
+  }
+
+  @Override
+  public boolean onItemLongClicked(int position) {
+    Car selected = getAdapter().getItems().get(position);
+
+    FavouritesCarsOptionsDialogFragment
+        fragment =
+        newInstance(selected);
+    fragment.setTargetFragment(this, 1);
+
+    fragment.show(getActivity().getFragmentManager(), "dialog");
+
     return false;
   }
 

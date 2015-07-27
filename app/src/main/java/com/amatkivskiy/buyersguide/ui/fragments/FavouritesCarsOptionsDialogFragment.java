@@ -9,22 +9,19 @@ import android.support.v7.app.AlertDialog;
 import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
 
-public class AllCarsOptionsDialogFragment extends DialogFragment {
+public class FavouritesCarsOptionsDialogFragment extends DialogFragment {
 
-  public interface OnAddCarToFavouritesListener {
-    void OnAddCarToFavourites(Car car);
-  }
-  public interface OnOpenCarListener {
-    void onOpen(Car car);
+  public interface OnRemoveFavouriteListener {
+    void onRemoveFromFavourites(Car car);
   }
 
   public static final String SELECTED_CAR_EXTRA = "selected_car";
 
-  public AllCarsOptionsDialogFragment() {
+  public FavouritesCarsOptionsDialogFragment() {
   }
 
-  public static AllCarsOptionsDialogFragment newInstance(Car selected) {
-    AllCarsOptionsDialogFragment fragment = new AllCarsOptionsDialogFragment();
+  public static FavouritesCarsOptionsDialogFragment newInstance(Car selected) {
+    FavouritesCarsOptionsDialogFragment fragment = new FavouritesCarsOptionsDialogFragment();
 
     Bundle data = new Bundle();
     data.putParcelable(SELECTED_CAR_EXTRA, selected);
@@ -36,16 +33,13 @@ public class AllCarsOptionsDialogFragment extends DialogFragment {
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     String[] options = new String[]{
-        getString(R.string.text_open_option),
-        getString(R.string.text_add_to_favourites_option)
+        getString(R.string.text_remove_from_favourites_option)
     };
 
     final Car selectedCar = getArguments().getParcelable(SELECTED_CAR_EXTRA);
 
-    final OnAddCarToFavouritesListener favCallback =
-        (OnAddCarToFavouritesListener) getTargetFragment();
-    final OnOpenCarListener openCallback =
-        (OnOpenCarListener) getTargetFragment();
+    final OnRemoveFavouriteListener callback =
+        (OnRemoveFavouriteListener) getTargetFragment();
 
     return new AlertDialog.Builder(getActivity())
         .setTitle(getString(R.string.text_options))
@@ -53,14 +47,7 @@ public class AllCarsOptionsDialogFragment extends DialogFragment {
                   new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      switch (which) {
-                        case 0:
-                          openCallback.onOpen(selectedCar);
-                          break;
-                        case 1:
-                          favCallback.OnAddCarToFavourites(selectedCar);
-                          break;
-                      }
+                      callback.onRemoveFromFavourites(selectedCar);
                     }
                   })
         .create();

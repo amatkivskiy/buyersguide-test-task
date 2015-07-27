@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import static com.amatkivskiy.buyersguide.Constants.Preferences.FavouriteCarsKey;
@@ -21,16 +20,12 @@ public class Prefs {
 
   static SharedPreferences preferences;
 
-  static SharedPreferences.Editor editor;
-
   Prefs(Context context) {
     preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    editor = preferences.edit();
   }
 
   Prefs(Context context, String name, int mode) {
     preferences = context.getSharedPreferences(name, mode);
-    editor = preferences.edit();
   }
 
   public static Prefs with(Context context) {
@@ -69,68 +64,12 @@ public class Prefs {
     return getStringSet(FavouriteCarsKey, new HashSet<String>());
   }
 
-  public void save(String key, boolean value) {
-    editor.putBoolean(key, value).apply();
-  }
-
-  public void save(String key, String value) {
-    editor.putString(key, value).apply();
-  }
-
-  public void save(String key, int value) {
-    editor.putInt(key, value).apply();
-  }
-
-  public void save(String key, float value) {
-    editor.putFloat(key, value).apply();
-  }
-
-  public void save(String key, long value) {
-    editor.putLong(key, value).apply();
-  }
-
   public void save(String key, Set<String> value) {
-    editor.putStringSet(key, value).apply();
-  }
-
-  public boolean getBoolean(String key, boolean defValue) {
-    return preferences.getBoolean(key, defValue);
-  }
-
-  public String getString(String key, String defValue) {
-    return preferences.getString(key, defValue);
-  }
-
-  public int getInt(String key, int defValue) {
-    return preferences.getInt(key, defValue);
-  }
-
-  public float getFloat(String key, float defValue) {
-    return preferences.getFloat(key, defValue);
-  }
-
-  public long getLong(String key, long defValue) {
-    return preferences.getLong(key, defValue);
+    preferences.edit().putStringSet(key, value).apply();
   }
 
   public Set<String> getStringSet(String key, Set<String> defValue) {
     return preferences.getStringSet(key, defValue);
-  }
-
-  public Map<String, ?> getAll() {
-    return preferences.getAll();
-  }
-
-  public void remove(String key) {
-    editor.remove(key).apply();
-  }
-
-  public void removeAll() {
-    editor.clear().apply();
-  }
-
-  public void contains(String key) {
-    preferences.contains(key);
   }
 
   private static class Builder {
