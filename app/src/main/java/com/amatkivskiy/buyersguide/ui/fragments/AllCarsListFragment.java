@@ -61,6 +61,11 @@ public class AllCarsListFragment extends BaseCarListFragment implements
     return false;
   }
 
+  private void performRefresh() {
+    getRefresher().setRefreshing(true);
+    handleRefresh();
+  }
+
   @Override
   protected void handleRefresh() {
     ApiHelper.getCars(new Callback<CarResponse>() {
@@ -87,7 +92,7 @@ public class AllCarsListFragment extends BaseCarListFragment implements
       @Override
       public boolean handleResult(CursorList<Car> cursorList) {
         if (cursorList.size() == 0) {
-          handleRefresh();
+          performRefresh();
         }
 
         getAdapter().setItems(cursorList.asList());

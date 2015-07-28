@@ -69,6 +69,10 @@ public abstract class BaseCarListFragment extends Fragment implements
     return mAdapter;
   }
 
+  public SwipeRefreshLayout getRefresher() {
+    return swipeRefreshLayout;
+  }
+
   protected void setRefreshing(boolean isRefreshing) {
     swipeRefreshLayout.setRefreshing(isRefreshing);
   }

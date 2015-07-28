@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
           }
         })
         .withSavedInstance(savedInstanceState)
-        .withShowDrawerOnFirstLaunch(true)
+//        .withShowDrawerOnFirstLaunch(true)
         .withSelectedItem(0)
         .build();
 
@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
       }
     });
     ToolbarSearchView toolbarSearchView = (ToolbarSearchView) MenuItemCompat.getActionView(item);
-    toolbarSearchView.setSearchPlaceholder(getString(R.string.text_serach_hint));
     toolbarSearchView.setOnSearchListener(searchActionsListener);
   }
 

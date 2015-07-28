@@ -16,5 +16,5 @@
     <string name="text_no_cars">No cars. Pull down to load cars.</string>
     <string name="text_error_check_internet">Please check your internet connection</string>
     <string name="text_empty_favourites">No cars.</string>
-    <string name="text_serach_hint">car name</string>
+    <string name="text_search_hint">car name</string>
 </resources>
