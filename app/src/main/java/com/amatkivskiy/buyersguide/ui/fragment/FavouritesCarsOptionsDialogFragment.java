@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide.ui.fragments;
+package com.amatkivskiy.buyersguide.ui.fragment;
 
 import android.app.Dialog;
 import android.app.DialogFragment;

@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide.ui.fragments;
+package com.amatkivskiy.buyersguide.ui.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.amatkivskiy.buyersguide.CarDetailsActivity;
+import com.amatkivskiy.buyersguide.ui.activity.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
-import com.amatkivskiy.buyersguide.ui.adapters.CarsAdapter;
-import com.amatkivskiy.buyersguide.ui.views.EmptyRecyclerView;
+import com.amatkivskiy.buyersguide.ui.adapter.CarsAdapter;
+import com.amatkivskiy.buyersguide.ui.view.EmptyRecyclerView;
 
 public abstract class BaseCarListFragment extends Fragment implements
                                                            CarsAdapter.OnItemClickListener,

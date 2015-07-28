@@ -92,11 +92,6 @@ public class Prefs {
       this.mode = mode;
     }
 
-    /**
-     * Method that creates an instance of Prefs
-     *
-     * @return an instance of Prefs
-     */
     public Prefs build() {
       if (mode == -1 || name == null) {
         return new Prefs(context);

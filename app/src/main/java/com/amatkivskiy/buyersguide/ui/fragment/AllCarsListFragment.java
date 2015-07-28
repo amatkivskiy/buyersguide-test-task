@@ -1,16 +1,16 @@
-package com.amatkivskiy.buyersguide.ui.fragments;
+package com.amatkivskiy.buyersguide.ui.fragment;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
-import com.amatkivskiy.buyersguide.CarDetailsActivity;
+import com.amatkivskiy.buyersguide.ui.activity.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.model.CarResponse;
 import com.amatkivskiy.buyersguide.network.ApiHelper;
-import com.amatkivskiy.buyersguide.ui.fragments.AllCarsOptionsDialogFragment.OnAddCarToFavouritesListener;
-import com.amatkivskiy.buyersguide.ui.fragments.AllCarsOptionsDialogFragment.OnOpenCarListener;
+import com.amatkivskiy.buyersguide.ui.fragment.AllCarsOptionsDialogFragment.OnAddCarToFavouritesListener;
+import com.amatkivskiy.buyersguide.ui.fragment.AllCarsOptionsDialogFragment.OnOpenCarListener;
 import com.amatkivskiy.buyersguide.util.Prefs;
 
 import se.emilsjolander.sprinkles.CursorList;
@@ -80,7 +80,7 @@ public class AllCarsListFragment extends BaseCarListFragment implements
         if (getActivity() != null) {
           Snackbar
               .make(getView(), getString(R.string.text_error_check_internet), Snackbar.LENGTH_SHORT)
-              .show(); // Don’t forget to show!
+              .show();
         }
       }
     });

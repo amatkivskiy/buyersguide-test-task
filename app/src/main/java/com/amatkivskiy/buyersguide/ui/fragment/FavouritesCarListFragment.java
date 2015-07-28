@@ -1,8 +1,8 @@
-package com.amatkivskiy.buyersguide.ui.fragments;
+package com.amatkivskiy.buyersguide.ui.fragment;
 
 import android.widget.Toast;
 
-import com.amatkivskiy.buyersguide.MainActivity.OnSearchActionsListener;
+import com.amatkivskiy.buyersguide.ui.activity.MainActivity.OnSearchActionsListener;
 import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.util.DbUtils;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarsOptionsDialogFragment.OnRemoveFavouriteListener;
-import static com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarsOptionsDialogFragment.newInstance;
+import static com.amatkivskiy.buyersguide.ui.fragment.FavouritesCarsOptionsDialogFragment.OnRemoveFavouriteListener;
+import static com.amatkivskiy.buyersguide.ui.fragment.FavouritesCarsOptionsDialogFragment.newInstance;
 
 public class FavouritesCarListFragment extends BaseCarListFragment implements
                                                                    OnRemoveFavouriteListener,

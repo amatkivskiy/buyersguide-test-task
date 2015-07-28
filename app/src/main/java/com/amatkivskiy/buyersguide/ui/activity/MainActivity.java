@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide;
+package com.amatkivskiy.buyersguide.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -9,8 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.amatkivskiy.buyersguide.ui.fragments.AllCarsListFragment;
-import com.amatkivskiy.buyersguide.ui.fragments.FavouritesCarListFragment;
+import com.amatkivskiy.buyersguide.R;
+import com.amatkivskiy.buyersguide.ui.fragment.AllCarsListFragment;
+import com.amatkivskiy.buyersguide.ui.fragment.FavouritesCarListFragment;
 import com.amatkivskiy.buyersguide.util.ToolbarSearchView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
           }
         })
         .withSavedInstance(savedInstanceState)
-//        .withShowDrawerOnFirstLaunch(true)
         .withSelectedItem(0)
         .build();
 

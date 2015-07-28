@@ -37,7 +37,6 @@ public class ApiHelper {
       public void success(CarResponse carResponse, Response response) {
         Timber.d("Received %d cars from server", carResponse.getCount());
 
-        //TODO: what if this fails???
         new ModelList<>(carResponse.getCars()).saveAllAsync();
 
         if (inner != null) {

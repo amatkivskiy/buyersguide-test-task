@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide.ui.views;
+package com.amatkivskiy.buyersguide.ui.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

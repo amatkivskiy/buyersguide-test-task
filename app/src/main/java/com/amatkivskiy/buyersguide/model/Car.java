@@ -17,7 +17,7 @@ public class Car extends Model implements Parcelable {
 
   @Key
   @Column(Database.CarIdColumn)
-  @com.google.gson.annotations.SerializedName("id")
+  @SerializedName("id")
   private int carId;
 
   @Column(Database.CarNameColumn)

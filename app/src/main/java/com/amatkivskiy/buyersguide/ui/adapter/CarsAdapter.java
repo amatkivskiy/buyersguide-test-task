@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide.ui.adapters;
+package com.amatkivskiy.buyersguide.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

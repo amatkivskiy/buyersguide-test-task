@@ -1,4 +1,4 @@
-package com.amatkivskiy.buyersguide;
+package com.amatkivskiy.buyersguide.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
 
 public class CarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
