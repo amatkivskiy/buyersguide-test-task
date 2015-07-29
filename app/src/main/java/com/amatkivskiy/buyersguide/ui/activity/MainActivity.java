@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     });
     ToolbarSearchView toolbarSearchView = (ToolbarSearchView) MenuItemCompat.getActionView(item);
     toolbarSearchView.setOnSearchListener(searchActionsListener);
+    toolbarSearchView.requestFocus();
   }
 
   @Override
