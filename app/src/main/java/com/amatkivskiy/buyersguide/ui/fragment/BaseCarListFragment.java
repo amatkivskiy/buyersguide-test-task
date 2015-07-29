@@ -20,13 +20,20 @@ import com.amatkivskiy.buyersguide.model.Car;
 import com.amatkivskiy.buyersguide.ui.adapter.CarsAdapter;
 import com.amatkivskiy.buyersguide.ui.view.EmptyRecyclerView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public abstract class BaseCarListFragment extends Fragment implements
                                                            CarsAdapter.OnItemClickListener,
                                                            CarsAdapter.OnItemLongClickListener {
 
-  protected EmptyRecyclerView recyclerView;
-  protected TextView emptyText;
-  protected SwipeRefreshLayout swipeRefreshLayout;
+  @Bind(R.id.cars_recycler)
+  EmptyRecyclerView recyclerView;
+  @Bind(R.id.empty_text)
+  TextView emptyText;
+  @Bind(R.id.refresh_layout)
+  SwipeRefreshLayout swipeRefreshLayout;
+
   private CarsAdapter mAdapter;
 
   private OnRefreshListener defaultRefreshListener = new OnRefreshListener() {
@@ -82,8 +89,8 @@ public abstract class BaseCarListFragment extends Fragment implements
                            Bundle savedInstanceState) {
     View root = inflater.inflate(R.layout.fragment_cars_list, container, false);
 
-    emptyText = (TextView) root.findViewById(R.id.empty_text);
-    recyclerView = (EmptyRecyclerView) root.findViewById(R.id.cars_recycler);
+    ButterKnife.bind(this, root);
+
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
@@ -105,7 +112,6 @@ public abstract class BaseCarListFragment extends Fragment implements
     mAdapter = new CarsAdapter(getActivity(), this, this);
     recyclerView.setAdapter(mAdapter);
 
-    swipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
     swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
     swipeRefreshLayout.setProgressViewOffset(false, 0,
                                              (int) TypedValue

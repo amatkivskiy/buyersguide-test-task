@@ -15,6 +15,9 @@ import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
   //recyclerView OnItemClickListener and OnItemLongClickListener implementations.
@@ -86,15 +89,16 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
     this.notifyDataSetChanged();
   }
 
-  public static class ViewHolder extends RecyclerView.ViewHolder {
+  static class ViewHolder extends RecyclerView.ViewHolder {
 
-    public final TextView carNameTextView;
-    public final ImageView carIconImageView;
+    @Bind(R.id.car_name)
+    TextView carNameTextView;
+    @Bind(R.id.car_icon)
+    ImageView carIconImageView;
 
     public ViewHolder(View v) {
       super(v);
-      carNameTextView = (TextView) v.findViewById(R.id.car_name);
-      carIconImageView = (ImageView) v.findViewById(R.id.car_icon);
+      ButterKnife.bind(this, v);
     }
   }
 }

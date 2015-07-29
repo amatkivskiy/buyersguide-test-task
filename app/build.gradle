@@ -36,4 +36,6 @@ dependencies {
     compile 'com.jakewharton.timber:timber:3.1.0'
     //Image processing
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //UI injection
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
