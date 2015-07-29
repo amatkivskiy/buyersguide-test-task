@@ -91,26 +91,32 @@ public abstract class BaseCarListFragment extends Fragment implements
 
     ButterKnife.bind(this, root);
 
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-      @Override
-      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-        super.onScrollStateChanged(recyclerView, newState);
-      }
-
-      @Override
-      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-        int topRowVerticalPosition =
-            (recyclerView == null
-             || recyclerView.getChildCount() == 0) ? 0
-                                                   : recyclerView
-                .getChildAt(0).getTop();
-        swipeRefreshLayout.setEnabled(topRowVerticalPosition >= 0);
-      }
-    });
-
     mAdapter = new CarsAdapter(getActivity(), this, this);
     recyclerView.setAdapter(mAdapter);
+
+    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    if (isRefreshEnabled()) {
+      recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+          super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+          int topRowVerticalPosition =
+              (recyclerView == null
+               || recyclerView.getChildCount() == 0) ? 0
+                                                     : recyclerView
+                  .getChildAt(0).getTop();
+          swipeRefreshLayout.setEnabled(topRowVerticalPosition >= 0);
+        }
+      });
+      swipeRefreshLayout.setOnRefreshListener(defaultRefreshListener);
+      swipeRefreshLayout.setEnabled(true);
+    } else {
+      swipeRefreshLayout.setEnabled(false);
+    }
 
     swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
     swipeRefreshLayout.setProgressViewOffset(false, 0,
@@ -118,12 +124,6 @@ public abstract class BaseCarListFragment extends Fragment implements
                                                  .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24,
                                                                  this.getResources()
                                                                      .getDisplayMetrics()));
-    if (isRefreshEnabled()) {
-      swipeRefreshLayout.setOnRefreshListener(defaultRefreshListener);
-      swipeRefreshLayout.setEnabled(true);
-    } else {
-      swipeRefreshLayout.setEnabled(false);
-    }
 
     setEmptyText(getEmptyText());
 
