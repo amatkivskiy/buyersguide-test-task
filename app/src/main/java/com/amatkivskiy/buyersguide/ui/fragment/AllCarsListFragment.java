@@ -56,7 +56,7 @@ public class AllCarsListFragment extends BaseCarListFragment implements
 
     AllCarsOptionsDialogFragment fragment = AllCarsOptionsDialogFragment.newInstance(selected);
     fragment.setTargetFragment(this, 1);
-    fragment.show(getActivity().getFragmentManager(), "dialog");
+    fragment.show(getActivity().getSupportFragmentManager(), "dialog");
 
     return false;
   }

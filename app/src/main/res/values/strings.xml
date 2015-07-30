@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Buyers Guide</string>
 
-
     <string name="text_drawer_favourites">Favourite</string>
     <string name="text_drawer_all">All</string>
+    <string name="text_drawer_about">About</string>
 
     <string name="text_options">Options</string>
     <string name="text_open_option">Open</string>
@@ -17,4 +17,9 @@
     <string name="text_error_check_internet">Please check your internet connection</string>
     <string name="text_empty_favourites">No cars.</string>
     <string name="text_search_hint">car name</string>
+
+    <string name="aboutLibraries_description_showIcon">true</string>
+    <string name="aboutLibraries_description_text">This app was developed by Andriy Matkivskiy as test task for job interviews.</string>
+    <string name="url_github_repository">https://github.com/amatkivskiy/buyersguide-test-task</string>
+    <string name="text_view_on_github">View on GitHub</string>
 </resources>

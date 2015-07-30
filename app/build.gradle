@@ -28,6 +28,10 @@ dependencies {
     compile('com.mikepenz:materialdrawer:3.1.2@aar') {
         transitive = true
     }
+    //AboutLibraries
+    compile('com.mikepenz:aboutlibraries:5.0.9@aar') {
+        transitive = true
+    }
     //Networking
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     //Database

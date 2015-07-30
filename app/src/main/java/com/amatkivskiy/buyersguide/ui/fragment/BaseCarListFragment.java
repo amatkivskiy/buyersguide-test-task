@@ -1,9 +1,9 @@
 package com.amatkivskiy.buyersguide.ui.fragment;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.amatkivskiy.buyersguide.ui.activity.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.R;
 import com.amatkivskiy.buyersguide.model.Car;
+import com.amatkivskiy.buyersguide.ui.activity.CarDetailsActivity;
 import com.amatkivskiy.buyersguide.ui.adapter.CarsAdapter;
 import com.amatkivskiy.buyersguide.ui.view.EmptyRecyclerView;
 

@@ -55,7 +55,7 @@ public class FavouritesCarListFragment extends BaseCarListFragment implements
         newInstance(selected);
     fragment.setTargetFragment(this, 1);
 
-    fragment.show(getActivity().getFragmentManager(), "dialog");
+    fragment.show(getActivity().getSupportFragmentManager(), "dialog");
 
     return false;
   }
