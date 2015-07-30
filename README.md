@@ -13,6 +13,11 @@ This app was developed as test task for job interviews.
 - Save interesting cars into favourites.
 - Filter cars in favourites with SearchView in Toolbar.
 
+# Screenshots
+![Main](https://raw.githubusercontent.com/amatkivskiy/buyersguide-test-task/master/screens/device-2015-07-30-091942.png)
+![Drawer Menu](https://github.com/amatkivskiy/buyersguide-test-task/blob/master/screens/device-2015-07-30-103947.png)
+![Details Screen](https://github.com/amatkivskiy/buyersguide-test-task/blob/master/screens/device-2015-07-30-092056.png)
+
 # LICENSE
 ```
 The MIT License (MIT)
