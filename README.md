@@ -5,7 +5,11 @@ This app was developed as test task for job interviews.
 
 - Download cars from backend (with [Retrofit](http://square.github.io/retrofit/))
 - Cache downloaded cars in the database (with [Sprinkles](https://github.com/emilsjolander/sprinkles))
-- Show as a list. (with [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html))
+- Uses famous UI elements: 
+  - [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html)
+  - [CardView](https://developer.android.com/reference/android/support/v7/widget/CardView.html)
+  - [MaterialDrawer](https://github.com/mikepenz/MaterialDrawer)
+  - [Snackbar](https://developer.android.com/reference/android/support/design/widget/Snackbar.html)
 - Save interesting cars into favourites.
 - Filter cars in favourites with SearchView in Toolbar.
 
