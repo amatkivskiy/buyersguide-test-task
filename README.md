@@ -1,4 +1,4 @@
-# Sample app
+# Sample Dev app
 This app was developed as test task for job interviews.
 
 # Features
