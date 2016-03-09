@@ -1,4 +1,4 @@
-Implemented login screen. 
+Implemented login screen.  
 
 # Sample Test app
 This app was developed as test task for job interviews.
